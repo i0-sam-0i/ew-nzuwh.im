@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= event.title %> – 2027 NZ Elite Womens UWH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body class="page-inner">
+
+<%- include('partials/navigation', { page: 'events' }) %>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <a href="/events" class="back-link">&#8592; Events</a>
+    <h1><%= event.title %></h1>
+    <p class="page-hero-subtitle"><%= event.subtitle %></p>
+    <div class="event-meta">
+      <span class="event-meta-item">&#128197; <%= new Date(event.event_date).toLocaleDateString('en-NZ', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) %></span>
+      <% if (event.location) { %>
+      <span class="event-meta-item">&#128205; <%= event.location %></span>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<main class="inner-content">
+  <% if (event.description) { %>
+  <div class="article-body">
+    <%- event.description %>
+  </div>
+  <% } %>
+</main>
+
+<%- include('partials/footer') %>
+<script src="/js/site.js"></script>
+</body>
+</html>

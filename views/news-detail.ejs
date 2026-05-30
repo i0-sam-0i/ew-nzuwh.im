@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= article.title %> – 2027 NZ Elite Womens UWH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body class="page-inner">
+
+<%- include('partials/navigation', { page: 'news' }) %>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <a href="/news" class="back-link">&#8592; News</a>
+    <h1><%= article.title %></h1>
+    <p class="page-hero-subtitle"><%= article.subtitle %></p>
+    <p class="page-hero-meta"><%= new Date(article.publish_date).toLocaleDateString('en-NZ', { day: 'numeric', month: 'long', year: 'numeric' }) %></p>
+  </div>
+</div>
+
+<main class="inner-content">
+  <div class="article-body">
+    <%- article.content %>
+  </div>
+
+  <% if (related && related.length > 0) { %>
+  <div class="related-section">
+    <h2 class="section-heading">Related News</h2>
+    <div class="card-list">
+      <% related.forEach(function(n) { %>
+      <a href="/news/<%= n.slug %>" class="card card--full">
+        <div class="card-body">
+          <h3 class="card-title"><%= n.title %></h3>
+          <p class="card-subtitle"><%= n.subtitle %></p>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+      <% }) %>
+    </div>
+  </div>
+  <% } %>
+</main>
+
+<%- include('partials/footer') %>
+<script src="/js/site.js"></script>
+</body>
+</html>

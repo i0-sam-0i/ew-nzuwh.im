@@ -1,1 +1,61 @@
-<h1>Events</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events – 2027 NZ Elite Womens UWH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body class="page-inner">
+
+<%- include('partials/navigation', { page: 'events' }) %>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <h1>Events</h1>
+  </div>
+</div>
+
+<main class="inner-content">
+  <% if (upcoming.length > 0) { %>
+  <h2 class="section-heading">Upcoming</h2>
+  <div class="card-list">
+    <% upcoming.forEach(function(e) { %>
+    <a href="/events/<%= e.slug %>" class="card card--full card--event">
+      <div class="card-date"><%= new Date(e.event_date).toLocaleDateString('en-NZ', { day: 'numeric', month: 'short', year: 'numeric' }).toUpperCase() %></div>
+      <div class="card-body">
+        <h3 class="card-title"><%= e.title %></h3>
+        <p class="card-subtitle"><%= e.subtitle %></p>
+        <% if (e.location) { %><p class="card-location">&#128205; <%= e.location %></p><% } %>
+      </div>
+      <span class="card-arrow">&#8594;</span>
+    </a>
+    <% }) %>
+  </div>
+  <% } %>
+
+  <% if (past.length > 0) { %>
+  <h2 class="section-heading section-heading--past">Past Events</h2>
+  <div class="card-list card-list--past">
+    <% past.forEach(function(e) { %>
+    <a href="/events/<%= e.slug %>" class="card card--full card--event card--past">
+      <div class="card-date"><%= new Date(e.event_date).toLocaleDateString('en-NZ', { day: 'numeric', month: 'short', year: 'numeric' }).toUpperCase() %></div>
+      <div class="card-body">
+        <h3 class="card-title"><%= e.title %></h3>
+        <p class="card-subtitle"><%= e.subtitle %></p>
+        <% if (e.location) { %><p class="card-location">&#128205; <%= e.location %></p><% } %>
+      </div>
+      <span class="card-arrow">&#8594;</span>
+    </a>
+    <% }) %>
+  </div>
+  <% } %>
+</main>
+
+<%- include('partials/footer') %>
+<script src="/js/site.js"></script>
+</body>
+</html>

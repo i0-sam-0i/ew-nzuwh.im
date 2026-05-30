@@ -1,9 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2027 NZ Elite Womens Underwater Hockey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body class="page-home">
 
-<!DOCTYPE html><html><head><title>2027 NZ Elite Womens UWH</title>
-<link rel="stylesheet" href="/css/site.css"></head><body>
-<header><nav><a href="/">Home</a><a href="/news">News</a><a href="/events">Events</a><a href="/contact">Contact</a><button>Login</button></nav></header>
-<section class="hero"><h1>2027 NZ Elite Womens UWH</h1><p>Hero image: place quebec_gold.jpg in public/images</p></section>
-<div class="cols">
-<div><h2>Latest News</h2><% news.forEach(n=>{ %><h3><%= n.title %></h3><p><%= n.subtitle %></p><% }) %></div>
-<div><h2>Upcoming Events</h2><% events.forEach(e=>{ %><p><strong><%= e.date %></strong><br><%= e.title %><br><%= e.subtitle %></p><% }) %></div>
-</div></body></html>
+<%- include('partials/navigation', { page: 'home' }) %>
+
+<section class="hero">
+  <img src="/images/quebec_gold.jpg" alt="NZ Womens UWH 2027" class="hero-img" />
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">2027 NZ ELITE WOMENS UWH</h1>
+  </div>
+</section>
+
+<main class="content-section">
+  <div class="cols">
+
+    <div class="col">
+      <h2 class="section-heading">Latest News</h2>
+      <% news.forEach(function(n) { %>
+      <a href="/news/<%= n.slug %>" class="card">
+        <div class="card-body">
+          <h3 class="card-title"><%= n.title %></h3>
+          <p class="card-subtitle"><%= n.subtitle %></p>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+      <% }) %>
+      <a href="/news" class="view-all">View all news &#8594;</a>
+    </div>
+
+    <div class="col">
+      <h2 class="section-heading">Upcoming Events</h2>
+      <% events.forEach(function(e) { %>
+      <a href="/events/<%= e.slug %>" class="card card--event">
+        <div class="card-date"><%= new Date(e.event_date).toLocaleDateString('en-NZ', { day: 'numeric', month: 'short', year: 'numeric' }).toUpperCase() %></div>
+        <div class="card-body">
+          <h3 class="card-title"><%= e.title %></h3>
+          <p class="card-subtitle"><%= e.subtitle %></p>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+      <% }) %>
+      <a href="/events" class="view-all">View all events &#8594;</a>
+    </div>
+
+  </div>
+</main>
+
+<%- include('partials/footer') %>
+
+<script src="/js/site.js"></script>
+</body>
+</html>

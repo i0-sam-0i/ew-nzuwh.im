@@ -1,1 +1,51 @@
-<h1>Contact</h1><p>Placeholder contact page</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact – 2027 NZ Elite Womens UWH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body class="page-inner">
+
+<%- include('partials/navigation', { page: 'contact' }) %>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <h1>Contact</h1>
+  </div>
+</div>
+
+<main class="inner-content">
+  <div class="contact-wrap">
+    <% if (locals.sent) { %>
+    <div class="form-success">
+      <p>Thanks for getting in touch. We'll be in contact shortly.</p>
+    </div>
+    <% } else { %>
+    <form class="contact-form" method="POST" action="/contact">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required placeholder="Your name" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required placeholder="your@email.com" />
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="6" required placeholder="Your message"></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Send Message</button>
+    </form>
+    <% } %>
+  </div>
+</main>
+
+<%- include('partials/footer') %>
+<script src="/js/site.js"></script>
+</body>
+</html>
