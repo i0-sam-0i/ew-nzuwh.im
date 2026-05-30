@@ -1,0 +1,9 @@
+
+<!DOCTYPE html><html><head><title>2027 NZ Elite Womens UWH</title>
+<link rel="stylesheet" href="/css/site.css"></head><body>
+<header><nav><a href="/">Home</a><a href="/news">News</a><a href="/events">Events</a><a href="/contact">Contact</a><button>Login</button></nav></header>
+<section class="hero"><h1>2027 NZ Elite Womens UWH</h1><p>Hero image: place quebec_gold.jpg in public/images</p></section>
+<div class="cols">
+<div><h2>Latest News</h2><% news.forEach(n=>{ %><h3><%= n.title %></h3><p><%= n.subtitle %></p><% }) %></div>
+<div><h2>Upcoming Events</h2><% events.forEach(e=>{ %><p><strong><%= e.date %></strong><br><%= e.title %><br><%= e.subtitle %></p><% }) %></div>
+</div></body></html>
